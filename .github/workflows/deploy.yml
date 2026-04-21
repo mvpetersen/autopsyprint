@@ -38,6 +38,7 @@ jobs:
           npx --yes staticrypt index.html \
             -p "$STATICRYPT_PASSWORD" \
             -d _site \
+            --short \
             --template-title "AutopsyPrint" \
             --template-instructions "Password-protected preview for peer reviewers and collaborators." \
             --template-button "Unlock"
