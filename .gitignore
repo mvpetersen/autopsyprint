@@ -11,3 +11,8 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# StatiCrypt build output
+_site/
+encrypted/
+.staticrypt.json
