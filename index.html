@@ -549,6 +549,13 @@
       max-width: none;
     }
 
+    .pub-block-secondary {
+      opacity: 0.7;
+      margin-top: 0;
+    }
+
+    .pub-block-secondary:hover { opacity: 0.9; }
+
     .pub-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .inline-link {
@@ -734,8 +741,7 @@
 
     <div class="btn-row">
       <a class="btn btn-primary" href="https://3dprint.fatal.report/" target="_blank" rel="noopener">
-        <!-- TODO: update subdomain when ready -->
-        ▶&nbsp; Open Web App
+        ▶&nbsp; Try the Web App
       </a>
       <a class="btn btn-secondary" href="#examples">
         Example Cases ↓
@@ -744,6 +750,10 @@
         Publication ↓
       </a>
     </div>
+    <p style="margin-top: 1.25rem; font-size: 0.88rem; color: var(--muted); max-width: 540px; line-height: 1.65;">
+      The web app is available for research evaluation. It runs directly in your browser
+      using WebGL. No installation or account is required and all data is stored in the browser (IndexedDB).
+    </p>
   </div>
 </header>
 
@@ -805,6 +815,12 @@
           Fig. 1 — AutopsyPrint interface: 3D trajectory mapping with azimuth/elevation controls and .3mf/.stl export
         </div>
       </div>
+
+      <div class="demo-note" style="margin-top: 1.5rem;">
+        The web app processes all data locally in your browser using WebGL. No case data is
+        transmitted to or stored on any server. Saved cases persist in the browser's IndexedDB
+        storage and can be deleted by the user at any time.
+      </div>
     </div>
   </section>
 
@@ -855,24 +871,30 @@
       <div class="points-grid">
         <div class="point-card">
           <div class="point-num">01</div>
-          <div class="point-title">Browser-Based Trajectory Mapping</div>
-          <p class="point-desc">Interactive 3D annotation of ballistic and sharp force injury trajectories using spherical coordinate inputs — no software installation required.</p>
+          <div class="point-title">Trajectory Mapping</div>
+          <p class="point-desc">Place entry and exit points on an interactive 3D body model. Trajectories are defined using a spherical coordinate system (azimuth and elevation angles), supporting gunshot wounds, stab wounds, and other ballistic injury types.</p>
         </div>
         <div class="point-card">
           <div class="point-num">02</div>
-          <div class="point-title">.3MF and .STL Export</div>
-          <p class="point-desc">Documented trajectories export directly to .3mf or .stl format, ready for physical 3D printing on standard FDM printers.</p>
+          <div class="point-title">Dynamic Pose Manipulation</div>
+          <p class="point-desc">Reposition limbs using inverse kinematics to optimally visualise trajectories — for example, raising the arms to clear a thorax gunshot path. Trajectories automatically reposition when the pose changes.</p>
         </div>
         <div class="point-card">
           <div class="point-num">03</div>
-          <div class="point-title">Courtroom Communication</div>
-          <p class="point-desc">Physical 3D models allow non-specialist stakeholders — jurors, investigators — to directly interact with spatial forensic findings.</p>
+          <div class="point-title">3D Print Export</div>
+          <p class="point-desc">Export to .3mf or .stl with configurable model size (small, medium, large), additive or subtractive trajectory rendering, and single- or multi-colour printing support for standard FDM printers.</p>
         </div>
         <div class="point-card">
           <div class="point-num">04</div>
-          <div class="point-title">Low Technical Barrier</div>
-          <p class="point-desc">Runs in any modern browser with no installation or account creation required, enabling straightforward adoption in forensic practice.</p>
+          <div class="point-title">Courtroom Communication</div>
+          <p class="point-desc">Physical 3D models allow jurors, investigators, and other non-specialist stakeholders to directly inspect and manipulate spatial forensic findings, without requiring mental reconstruction from 2D diagrams.</p>
         </div>
+      </div>
+
+      <div class="demo-note" style="margin-top: 2rem;">
+        AutopsyPrint currently supports generic adult male and female body models. This
+        version of the web app focuses on ballistic and sharp force trajectory documentation
+        and 3D print export. Body posing may produce minor mesh artefacts on the trunk area.
       </div>
     </div>
   </section>
@@ -986,39 +1008,10 @@
         Example cases are provided for illustrative purposes only and do not represent real
         autopsy data. Click <strong>▶ Open</strong> to load a case directly in the web app.
       </div>
+
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section>
-    <div class="container">
-      <p class="section-tag">Web App</p>
-      <h2>Try the tool</h2>
-      <p>
-        The web app is available for research evaluation. It runs entirely in your browser
-        using WebGL — no installation or account required.
-      </p>
-
-      <div class="demo-card">
-        <div class="demo-text">
-          <h3>AutopsyPrint Web App</h3>
-          <p>
-            Map injury trajectories on an interactive 3D body model and export as
-            .3mf or .stl for 3D printing.
-          </p>
-        </div>
-        <a class="btn btn-primary" href="https://3dprint.fatal.report/" target="_blank" rel="noopener">
-          ▶&nbsp; Launch Web App
-        </a>
-      </div>
-
-      <div class="demo-note">
-        The web app runs locally in your browser and does not transmit or store any data.
-        The tool is not a certified medical or forensic product; use in casework requires
-        institutional validation.
-      </div>
-    </div>
-  </section>
 
   <!-- PUBLICATION -->
   <section id="publication">
@@ -1057,15 +1050,16 @@
         </div>
       </div>
 
-      <!-- Previous paper -->
-      <div class="pub-block" style="margin-top: 1rem;">
-        <div class="pub-header">
-          <span class="pub-status" style="background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.25);">Published</span>
-          <span class="pub-journal">Computers in Biology and Medicine · 2024</span>
+      <!-- Related work -->
+      <p class="section-tag" style="margin-top: 2.5rem; margin-bottom: 0.75rem;">Related Work</p>
+      <div class="pub-block pub-block-secondary">
+        <div class="pub-header" style="padding: 0.7rem 1.25rem;">
+          <span class="pub-status" style="background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.25); font-size: 0.58rem;">Published</span>
+          <span class="pub-journal" style="font-size: 0.62rem;">Computers in Biology and Medicine · 2024</span>
         </div>
-        <div class="pub-body">
-          <div class="pub-title-text">FATAL: A Forensic AuTopsy Annotation tooL for digital recording of autopsy findings</div>
-          <p class="pub-authors">Mikkel V. Petersen et al. · Computers in Biology and Medicine</p>
+        <div class="pub-body" style="padding: 1rem 1.25rem;">
+          <div class="pub-title-text" style="font-size: 0.92rem;">FATAL: A Forensic AuTopsy Annotation tooL for digital recording of autopsy findings</div>
+          <p class="pub-authors" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Mikkel V. Petersen et al.</p>
           <div class="pub-links">
             <a class="inline-link" href="https://doi.org/10.1016/j.compbiomed.2024.109170" target="_blank" rel="noopener">DOI ↗</a>
           </div>
@@ -1081,13 +1075,18 @@
       <p class="section-tag">Contact</p>
       <h2>Get in touch</h2>
       <p>
-        For research collaborations, evaluation access, or questions about the tool,
-        contact the corresponding author:
+        The source code is not currently publicly available. For research collaborations,
+        evaluation access, or questions about the tool, contact the corresponding author:
       </p>
       <p>
         <a class="inline-link" href="/cdn-cgi/l/email-protection#96fbfffdfdf3fab8e6f3e2f3e4e5f3f8d6f5f0fff8b8f7e3b8f2fd"><span class="__cf_email__" data-cfemail="4b262220202e27653b2e3f2e39382e250b282d2225652a3e652f20">[email&#160;protected]</span></a>
         &nbsp;·&nbsp;
         <a class="inline-link" href="https://fatal.report" target="_blank" rel="noopener">fatal.report</a>
+      </p>
+
+      <p class="section-tag" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Funding</p>
+      <p style="font-size: 0.88rem; color: var(--muted);">
+        This work is supported by an InnoExplorer grant from the Danish Innovation Foundation.
       </p>
     </div>
   </section>
