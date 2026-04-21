@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutopsyPrint — 3D Printable Injury Trajectory Models</title>
+  <meta name="description" content="A novel tool for translating ballistic and sharp force injury trajectory findings into 3D printable models." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0c0c0e;
+      --surface:      #141418;
+      --surface2:     #1a1a20;
+      --border:       #2a2a35;
+      --border-light: #3a3a48;
+      --text:         #c8ccd8;
+      --text-strong:  #eceef5;
+      --muted:        #5a5e72;
+      --accent:       #EE5B3E;
+      --accent-dim:   #7a2e1f;
+      --blue:         #3b82c4;
+      --blue-dim:     #1e3f62;
+      --mono:         'JetBrains Mono', monospace;
+      --cond:         'Barlow Condensed', sans-serif;
+      --sans:         'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .trajectory-deco {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--accent) 60%, transparent 100%);
+      opacity: 0.7;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .topbar-label span { color: var(--accent); }
+
+    .topbar-au {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero .container { position: relative; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: var(--cond);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 7vw, 4.4rem);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--text-strong);
+      margin-bottom: 0.3rem;
+    }
+
+    h1 .accent { color: var(--accent); }
+
+    .hero-subtitle {
+      font-family: var(--cond);
+      font-weight: 500;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    /* ── AUTHOR BLOCK ── */
+    .author-block {
+      margin-bottom: 2.5rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 3px;
+      max-width: 680px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem 1.5rem;
+    }
+
+    .author-name {
+      font-family: var(--cond);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-strong);
+      letter-spacing: 0.02em;
+    }
+
+    .author-affil {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 0.2rem;
+      line-height: 1.6;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all 0.18s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      font-weight: 500;
+    }
+
+    .btn-primary:hover { background: #f46e53; border-color: #f46e53; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-light);
+    }
+
+    .btn-secondary:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+    .btn-sm { padding: 0.45rem 0.9rem; font-size: 0.65rem; }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-strong);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    p { margin-bottom: 0.9rem; max-width: 700px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── SCREENSHOT ── */
+    .screenshot-wrap {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .screenshot-bar {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .screenshot-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border-light);
+    }
+
+    .screenshot-url {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-left: 0.5rem;
+    }
+
+    .screenshot-img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: top left;
+    }
+
+    .screenshot-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+
+    .screenshot-placeholder-text {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    .screenshot-caption {
+      padding: 0.75rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ABSTRACT ── */
+    .abstract-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      position: relative;
+    }
+
+    .abstract-box::before {
+      content: 'ABSTRACT';
+      position: absolute;
+      top: -0.6rem;
+      left: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      background: var(--surface);
+      padding: 0 0.5rem;
+    }
+
+    .abstract-box p {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.8;
+      max-width: none;
+    }
+
+    /* ── KEY POINTS ── */
+    .points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+
+    .point-card {
+      background: var(--surface);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .point-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .point-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .point-title {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-strong);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .point-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* ── EXAMPLE CASES ── */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+
+    .case-card {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .case-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-thumb-placeholder svg {
+      width: 65%;
+      height: 65%;
+    }
+
+    .case-thumb-label {
+      position: absolute;
+      bottom: 0.6rem;
+      left: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(12,12,14,0.85);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    .case-body {
+      padding: 1.1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-title {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-strong);
+      margin-bottom: 0.4rem;
+    }
+
+    .case-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 0.9rem;
+      max-width: none;
+    }
+
+    .case-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── PUBLICATION ── */
+    .pub-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+
+    .pub-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .pub-status {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .pub-journal {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .pub-body { padding: 1.5rem; }
+
+    .pub-title-text {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-strong);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-authors {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: none;
+    }
+
+    .pub-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .inline-link {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-dim);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .inline-link:hover { color: #f46e53; border-color: #f46e53; }
+
+    .citation-block {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .citation-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      opacity: 0.7;
+    }
+
+    /* ── DEMO CARD ── */
+    .demo-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .demo-text { flex: 1 1 300px; }
+
+    .demo-text h3 {
+      font-family: var(--cond);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--text-strong);
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-text p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: none;
+    }
+
+    .demo-note {
+      margin-top: 1.5rem;
+      padding: 0.9rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border-light);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer { padding: 2.5rem 0; }
+
+    footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+    }
+
+    .footer-info {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .footer-info a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-wordmark {
+      font-family: var(--cond);
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--border-light);
+      line-height: 1;
+    }
+
+    .footer-wordmark span { color: var(--accent-dim); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero .container > * { animation: fadeUp 0.55s ease both; }
+    .hero .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero .container > *:nth-child(2) { animation-delay: 0.12s; }
+    .hero .container > *:nth-child(3) { animation-delay: 0.18s; }
+    .hero .container > *:nth-child(4) { animation-delay: 0.24s; }
+    .hero .container > *:nth-child(5) { animation-delay: 0.3s; }
+    .hero .container > *:nth-child(6) { animation-delay: 0.38s; }
+
+    @media (max-width: 700px) {
+      .topbar .container { flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+      .author-block { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .demo-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="trajectory-deco"></div>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="container">
+    <div class="topbar-label">
+      <span>FATAL/AutopsyPrint</span> · Research Project
+    </div>
+    <div class="topbar-au">
+      Aarhus University
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-tag">Research Paper · 2026</div>
+
+    <h1>Autopsy<span class="accent">Print</span></h1>
+    <p class="hero-subtitle">3D Printable Forensic Injury Documentation</p>
+
+    <p class="hero-desc">
+      A novel browser-based tool for translating ballistic and sharp force injury
+      trajectory findings into 3D printable models — bridging the gap between
+      complex spatial autopsy data and accessible forensic communication.
+    </p>
+
+    <div class="author-block">
+      <div>
+        <div class="author-name">Christine E. Parsons</div>
+        <div class="author-affil">Dept. of Clinical Medicine<br/>Aarhus University</div>
+      </div>
+      <div>
+        <div class="author-name">Asser H. Thomsen</div>
+        <div class="author-affil">Dept. of Forensic Medicine<br/>Aarhus University</div>
+      </div>
+      <div>
+        <div class="author-name">Mikkel V. Petersen</div>
+        <div class="author-affil">Dept. of Clinical Medicine<br/>Aarhus University</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://3dprint.fatal.report/" target="_blank" rel="noopener">
+        <!-- TODO: update subdomain when ready -->
+        ▶&nbsp; Open Web App
+      </a>
+      <a class="btn btn-secondary" href="#examples">
+        Example Cases ↓
+      </a>
+      <a class="btn btn-secondary" href="#publication">
+        Publication ↓
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- SCREENSHOT / THE TOOL -->
+  <section>
+    <div class="container">
+      <p class="section-tag">The Tool</p>
+      <h2>Interactive 3D trajectory annotation</h2>
+      <p>
+        AutopsyPrint runs entirely in the browser. Forensic pathologists annotate entry points
+        and wound trajectories on an interactive 3D body model using azimuth and elevation angles,
+        then export the result directly to a 3D-printable file.
+      </p>
+
+      <div class="screenshot-wrap">
+        <div class="screenshot-bar">
+          <div class="screenshot-dot"></div>
+          <div class="screenshot-dot"></div>
+          <div class="screenshot-dot"></div>
+          <span class="screenshot-url">3dprint.fatal.report</span>
+        </div>
+
+        <!--
+          ══ SCREENSHOT INSTRUCTIONS ══════════════════════════════════════
+          Replace the placeholder below with a real screenshot of the app.
+
+          Option A — local file (recommended):
+            1. Take a screenshot of the WebGL app
+            2. Save it as screenshot.png in the same folder as this index.html
+            3. Replace the <div class="screenshot-placeholder"> block with:
+               <img class="screenshot-img" src="./screenshot.png"
+                    alt="AutopsyPrint interface showing 3D body model with trajectory annotations" />
+
+          Option B — hosted image URL:
+               <img class="screenshot-img" src="https://your-url/screenshot.png" alt="..." />
+          ═════════════════════════════════════════════════════════════════
+        -->
+          <img class="screenshot-img" src="./screenshot.png"
+                    alt="AutopsyPrint interface showing 3D body model with trajectory annotations" />
+        <!-- <div class="screenshot-placeholder">
+          <svg width="120" height="120" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+            <ellipse cx="80" cy="22" rx="13" ry="15" stroke="#EE5B3E" stroke-width="1.5"/>
+            <rect x="64" y="35" width="32" height="42" rx="4" stroke="#EE5B3E" stroke-width="1.5"/>
+            <rect x="48" y="37" width="15" height="34" rx="4" stroke="#aaa" stroke-width="1"/>
+            <rect x="97" y="37" width="15" height="34" rx="4" stroke="#aaa" stroke-width="1"/>
+            <rect x="66" y="77" width="13" height="28" rx="3" stroke="#aaa" stroke-width="1"/>
+            <rect x="81" y="77" width="13" height="28" rx="3" stroke="#aaa" stroke-width="1"/>
+            <line x1="15" y1="48" x2="70" y2="56" stroke="#EE5B3E" stroke-width="2" stroke-dasharray="5 3"/>
+            <polygon points="70,52 80,56 70,60" fill="#EE5B3E"/>
+            <line x1="145" y1="35" x2="95" y2="50" stroke="#EE5B3E" stroke-width="2" stroke-dasharray="5 3"/>
+            <polygon points="95,46 85,50 95,54" fill="#EE5B3E"/>
+          </svg>
+          <div class="screenshot-placeholder-text">Replace with screenshot.png — see HTML comment above</div>
+        </div> -->
+
+        <div class="screenshot-caption">
+          Fig. 1 — AutopsyPrint interface: 3D trajectory mapping with azimuth/elevation controls and .3mf/.stl export
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKGROUND -->
+  <section>
+    <div class="container">
+      <p class="section-tag">Background</p>
+      <h2>From 2D paper forms to 3D spatial documentation</h2>
+      <p>
+        Forensic autopsy findings are typically recorded using paper-based formats, a process
+        that entails loss of three-dimensional information. While surface wounds can be noted on
+        2D body models, recording wound angles and entry trajectories poses fundamental geometric
+        challenges — a single trajectory requires multiple angular measurements for a complete
+        spatial description.
+      </p>
+      <p>
+        3D printing technologies can render autopsy findings onto physical models, providing more
+        accessible spatial mapping than paper-based approaches. The declining costs of FDM printers,
+        combined with user-friendly software, creates an immediate opportunity for implementation
+        in forensic practice.
+      </p>
+
+      <div class="abstract-box">
+        <p>
+          When autopsy findings are presented on two-dimensional models, there is an inherent
+          reduction of spatial information, which the viewer must infer from simplified anatomical
+          and geometrical representations. Multiple diagrams representing angle paths must be
+          integrated into a complete mental model, introducing further potential for errors in
+          viewer inference.
+        </p>
+        <p style="margin-top: 0.9rem;">
+          Forensic specialists have the extensive training and anatomical knowledge required to
+          mentally reconstruct 3D models from 2D. However, for jurors and other non-specialist
+          stakeholders, such mental reconstruction is likely demanding, if not impossible. The
+          possibility of holding, manipulating and otherwise interacting with complex autopsy data
+          are key advantages of 3D rendering.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONTRIBUTIONS -->
+  <section>
+    <div class="container">
+      <p class="section-tag">Contributions</p>
+      <h2>What AutopsyPrint offers</h2>
+
+      <div class="points-grid">
+        <div class="point-card">
+          <div class="point-num">01</div>
+          <div class="point-title">Browser-Based Trajectory Mapping</div>
+          <p class="point-desc">Interactive 3D annotation of ballistic and sharp force injury trajectories using spherical coordinate inputs — no software installation required.</p>
+        </div>
+        <div class="point-card">
+          <div class="point-num">02</div>
+          <div class="point-title">.3MF and .STL Export</div>
+          <p class="point-desc">Documented trajectories export directly to .3mf or .stl format, ready for physical 3D printing on standard FDM printers.</p>
+        </div>
+        <div class="point-card">
+          <div class="point-num">03</div>
+          <div class="point-title">Courtroom Communication</div>
+          <p class="point-desc">Physical 3D models allow non-specialist stakeholders — jurors, investigators — to directly interact with spatial forensic findings.</p>
+        </div>
+        <div class="point-card">
+          <div class="point-num">04</div>
+          <div class="point-title">Low Technical Barrier</div>
+          <p class="point-desc">Runs in any modern browser with no installation or account creation required, enabling straightforward adoption in forensic practice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE CASES -->
+  <section id="examples">
+    <div class="container">
+      <p class="section-tag">Example Cases</p>
+      <h2>Download and explore</h2>
+      <p>
+        The following example cases illustrate typical documentation scenarios. Each can be
+        downloaded as a .3mf file for 3D printing, or opened directly in the web app.
+      </p>
+
+      <div class="cases-grid">
+
+        <!-- CASE 1
+             TODO: Replace case-thumb-placeholder with:
+             <img class="case-thumb" src="./cases/case1-thumb.png" alt="Case 1: Single GSW thorax" />
+             Update href attributes with real file paths / deep-link URLs -->
+        <div class="case-card">
+          <div class="case-thumb-placeholder">
+            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <line x1="18" y1="44" x2="70" y2="52" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
+              <polygon points="70,48 80,52 70,56" fill="#EE5B3E"/>
+            </svg>
+            <div class="case-thumb-label">GSW · Thorax</div>
+          </div>
+          <div class="case-body">
+            <div class="case-title">Single Gunshot — Thorax</div>
+            <p class="case-desc">
+              Single entry GSW to the left thorax demonstrating the basic trajectory
+              annotation and export workflow.
+            </p>
+            <div class="case-actions">
+              <!-- TODO: add href when .3mf hosting is decided -->
+              <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
+              <!-- TODO: update query param name/value to match backend implementation e.g. ?case=case1 -->
+              <a class="btn btn-primary btn-sm" href="https://3dprint.fatal.report/?case=case1" target="_blank" rel="noopener">▶ Open</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE 2 -->
+        <div class="case-card">
+          <div class="case-thumb-placeholder">
+            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <line x1="135" y1="30" x2="90" y2="44" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
+              <polygon points="90,40 82,44 90,48" fill="#EE5B3E"/>
+              <line x1="138" y1="52" x2="92" y2="57" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
+              <polygon points="92,53 84,57 92,61" fill="#EE5B3E"/>
+            </svg>
+            <div class="case-thumb-label">SFW · Multiple</div>
+          </div>
+          <div class="case-body">
+            <div class="case-title">Multiple Stab Wounds</div>
+            <p class="case-desc">
+              Two sharp force injuries to the right thorax with differing angles, illustrating
+              documentation of multiple related trajectories.
+            </p>
+            <div class="case-actions">
+              <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
+              <a class="btn btn-primary btn-sm" href="https://3dprint.fatal.report/?case=case2" target="_blank" rel="noopener">▶ Open</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE 3 -->
+        <div class="case-card">
+          <div class="case-thumb-placeholder">
+            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
+              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
+              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
+              <path d="M 18 32 Q 55 40 75 58" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3" fill="none"/>
+              <polygon points="73,58 80,65 68,65" fill="#EE5B3E"/>
+            </svg>
+            <div class="case-thumb-label">GSW · Deflected</div>
+          </div>
+          <div class="case-body">
+            <div class="case-title">Deflected Gunshot Trajectory</div>
+            <p class="case-desc">
+              A gunshot wound with deflection, demonstrating documentation of
+              non-linear trajectories and segmented angle measurements.
+            </p>
+            <div class="case-actions">
+              <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
+              <a class="btn btn-primary btn-sm" href="https://3dprint.fatal.report/?case=case3" target="_blank" rel="noopener">▶ Open</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="demo-note">
+        Example cases are provided for illustrative purposes only and do not represent real
+        autopsy data. Click <strong>▶ Open</strong> to load a case directly in the web app.
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section>
+    <div class="container">
+      <p class="section-tag">Web App</p>
+      <h2>Try the tool</h2>
+      <p>
+        The web app is available for research evaluation. It runs entirely in your browser
+        using WebGL — no installation or account required.
+      </p>
+
+      <div class="demo-card">
+        <div class="demo-text">
+          <h3>AutopsyPrint Web App</h3>
+          <p>
+            Map injury trajectories on an interactive 3D body model and export as
+            .3mf or .stl for 3D printing.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="https://3dprint.fatal.report/" target="_blank" rel="noopener">
+          ▶&nbsp; Launch Web App
+        </a>
+      </div>
+
+      <div class="demo-note">
+        The web app runs locally in your browser and does not transmit or store any data.
+        The tool is not a certified medical or forensic product; use in casework requires
+        institutional validation.
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATION -->
+  <section id="publication">
+    <div class="container">
+      <p class="section-tag">Publication</p>
+      <h2>Research paper</h2>
+
+      <div class="pub-block">
+        <div class="pub-header">
+          <span class="pub-status">In Review</span>
+          <!-- TODO: update when accepted -->
+          <span class="pub-journal">Journal TBC · 2026</span>
+        </div>
+        <div class="pub-body">
+          <div class="pub-title-text">
+            AutopsyPrint: A novel tool for translating ballistic and sharp force injury
+            trajectory findings into 3D printable models
+          </div>
+          <p class="pub-authors">
+            Christine E. Parsons, Asser H. Thomsen &amp; Mikkel V. Petersen
+          </p>
+          <div class="pub-links">
+            <span style="font-family: var(--mono); font-size: 0.68rem; color: var(--muted);">
+              DOI / preprint link will appear here upon publication
+            </span>
+          </div>
+          <!-- Citation block hidden until paper is published -->
+          <!--
+          <div class="citation-block">
+            <div class="citation-label">Cite as</div>
+            Parsons, C.E., Thomsen, A.H. &amp; Petersen, M.V. (2026). AutopsyPrint: A novel tool
+            for translating ballistic and sharp force injury trajectory findings into 3D printable
+            models. <em>[Journal, Volume, Pages]</em>. https://doi.org/[DOI]
+          </div>
+          -->
+        </div>
+      </div>
+
+      <!-- Previous paper -->
+      <div class="pub-block" style="margin-top: 1rem;">
+        <div class="pub-header">
+          <span class="pub-status" style="background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.25);">Published</span>
+          <span class="pub-journal">Computers in Biology and Medicine · 2024</span>
+        </div>
+        <div class="pub-body">
+          <div class="pub-title-text">FATAL: A Forensic AuTopsy Annotation tooL for digital recording of autopsy findings</div>
+          <p class="pub-authors">Mikkel V. Petersen et al. · Computers in Biology and Medicine</p>
+          <div class="pub-links">
+            <a class="inline-link" href="https://doi.org/10.1016/j.compbiomed.2024.109170" target="_blank" rel="noopener">DOI ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="container">
+      <p class="section-tag">Contact</p>
+      <h2>Get in touch</h2>
+      <p>
+        For research collaborations, evaluation access, or questions about the tool,
+        contact the corresponding author:
+      </p>
+      <p>
+        <a class="inline-link" href="/cdn-cgi/l/email-protection#96fbfffdfdf3fab8e6f3e2f3e4e5f3f8d6f5f0fff8b8f7e3b8f2fd"><span class="__cf_email__" data-cfemail="4b262220202e27653b2e3f2e39382e250b282d2225652a3e652f20">[email&#160;protected]</span></a>
+        &nbsp;·&nbsp;
+        <a class="inline-link" href="https://fatal.report" target="_blank" rel="noopener">fatal.report</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-info">
+      AutopsyPrint · Immersive Forensic Imaging Lab<br/>
+      Department of Clinical Medicine · Aarhus University · Denmark<br/>
+      <a href="https://mvpetersen.github.io/autopsyprint/">mvpetersen.github.io/autopsyprint</a>
+    </div>
+    <div class="footer-wordmark">Autopsy<span>Print</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
