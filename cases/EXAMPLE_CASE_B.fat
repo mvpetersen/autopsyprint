@@ -1,0 +1,689 @@
+{
+  "fatal_version": "1.0.0",
+  "format_version": 1,
+  "created_at": "2026-04-21T18:59:49.592Z",
+  "generator": "FATAL WebGL v1.0.0",
+  "case": {
+    "uid": "303830d4-1765-4abc-8d68-74bb7d2690bf",
+    "case_number": "CASE-2026-826",
+    "sex": "male",
+    "age": null,
+    "height": null,
+    "weight": null,
+    "description": "",
+    "notes": "",
+    "createdAt": "2026-04-21T18:53:22.422Z",
+    "updatedAt": "2026-04-21T18:53:22.422Z"
+  },
+  "screenshots": [],
+  "videos": [],
+  "exports": [],
+  "annotations": [
+    {
+      "uid": "0d20d2d9-5561-41de-81ed-c63f037f5d98",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-2",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": 2.2589144706726074,
+        "y": 140.03395080566406,
+        "z": 10.325014114379883
+      },
+      "createdAt": "2026-04-21T18:55:40.8090000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": 2.2589144706726074,
+          "y": 140.03395080566406,
+          "z": 10.325014114379883
+        },
+        "entryNormal": {
+          "x": -0.2718997001647949,
+          "y": 0.06143268197774887,
+          "z": 0.9590456485748291
+        },
+        "direction": {
+          "x": -0.2101823091506958,
+          "y": 0.4852418899536133,
+          "z": 0.8487423658370972
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": 7.626659393310547,
+          "y": 127.64159393310547,
+          "z": -11.350608825683594
+        },
+        "exitNormal": {
+          "x": 0.46057507395744324,
+          "y": 0.18349173665046692,
+          "z": -0.8684477210044861
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": 7.626659393310547,
+          "y": 127.64159393310547,
+          "z": -11.350608825683594
+        },
+        "midPoint": {
+          "x": 4.942787170410156,
+          "y": 133.8377685546875,
+          "z": -0.5127973556518555
+        },
+        "triangleIndex": 3360,
+        "barycentric": {
+          "x": 0.7873961925506592,
+          "y": 0.043941155076026917,
+          "z": 0.1686626821756363
+        },
+        "triangleVertexIndex0": 1807,
+        "triangleVertexIndex1": 1802,
+        "triangleVertexIndex2": 1798,
+        "entryTangent": {
+          "x": -0.9613286256790161,
+          "y": -0.01839274726808071,
+          "z": -0.27124637365341187
+        },
+        "normalRotation": {
+          "x": -0.11956099420785904,
+          "y": -0.07466638088226318,
+          "z": 0.703501284122467,
+          "w": 0.6965745091438293
+        },
+        "baseRotation": {
+          "x": 0.49245017766952515,
+          "y": 0,
+          "z": 0.12195021659135818,
+          "w": 0.8617545962333679
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "0f0e9172-ebe3-49f2-a631-b898416f3054",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-7",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -10.554463386535645,
+        "y": 141.52439880371094,
+        "z": -8.89064884185791
+      },
+      "createdAt": "2026-04-21T18:58:22.3670000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -10.554463386535645,
+          "y": 141.52439880371094,
+          "z": -8.89064884185791
+        },
+        "entryNormal": {
+          "x": -0.263562947511673,
+          "y": 0.364225834608078,
+          "z": -0.8922432065010071
+        },
+        "direction": {
+          "x": -0.263562947511673,
+          "y": 0.364225834608078,
+          "z": -0.8922432065010071
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 39,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": -4.784903049468994,
+          "y": 133.55126953125,
+          "z": 10.64113712310791
+        },
+        "exitNormal": {
+          "x": 0.17809821665287018,
+          "y": -0.20755954086780548,
+          "z": 0.9618732929229736
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": -4.784903049468994,
+          "y": 133.55126953125,
+          "z": 10.64113712310791
+        },
+        "midPoint": {
+          "x": -7.669683456420898,
+          "y": 137.537841796875,
+          "z": 0.875244140625
+        },
+        "triangleIndex": 8833,
+        "barycentric": {
+          "x": 0.21858489513397217,
+          "y": 0.7035896182060242,
+          "z": 0.07782551646232605
+        },
+        "triangleVertexIndex0": 4756,
+        "triangleVertexIndex1": 4766,
+        "triangleVertexIndex2": 4755,
+        "entryTangent": {
+          "x": 0.9569446444511414,
+          "y": -0.010248182341456413,
+          "z": -0.2869119644165039
+        },
+        "normalRotation": {
+          "x": 0.7101340889930725,
+          "y": 0.665002167224884,
+          "z": 0.02910398505628109,
+          "w": -0.22942237555980682
+        },
+        "baseRotation": {
+          "x": -0.540579617023468,
+          "y": 0,
+          "z": 0.15968376398086548,
+          "w": 0.8259993195533752
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "63c9a79c-241e-464b-8bc7-cc5f884f12ec",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-3",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -1.6068317890167236,
+        "y": 145.59426879882812,
+        "z": 9.04692268371582
+      },
+      "createdAt": "2026-04-21T18:56:14.5660000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -1.6068317890167236,
+          "y": 145.59426879882812,
+          "z": 9.04692268371582
+        },
+        "entryNormal": {
+          "x": 0.24225103855133057,
+          "y": 0.26973047852516174,
+          "z": 0.9312869310379028
+        },
+        "direction": {
+          "x": -0.27687036991119385,
+          "y": 0.5785234570503235,
+          "z": 0.7672376036643982
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": 5.979107856750488,
+          "y": 129.74339294433594,
+          "z": -11.974527359008789
+        },
+        "exitNormal": {
+          "x": 0.1309768706560135,
+          "y": -0.1936608850955963,
+          "z": -0.9722862243652344
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": 5.979107856750488,
+          "y": 129.74339294433594,
+          "z": -11.974527359008789
+        },
+        "midPoint": {
+          "x": 2.186138153076172,
+          "y": 137.6688232421875,
+          "z": -1.4638023376464844
+        },
+        "triangleIndex": 2215,
+        "barycentric": {
+          "x": 0.5231577754020691,
+          "y": 0.06608480215072632,
+          "z": 0.4107574224472046
+        },
+        "triangleVertexIndex0": 1193,
+        "triangleVertexIndex1": 1187,
+        "triangleVertexIndex2": 1199,
+        "entryTangent": {
+          "x": -0.9696425199508667,
+          "y": 0.05847828835248947,
+          "z": 0.2353227734565735
+        },
+        "normalRotation": {
+          "x": -0.01225078385323286,
+          "y": 0.18415147066116333,
+          "z": 0.6860030889511108,
+          "w": 0.7038025259971619
+        },
+        "baseRotation": {
+          "x": 0.4318067133426666,
+          "y": 0,
+          "z": 0.15582458674907684,
+          "w": 0.8884040117263794
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "91d9e4c1-ed35-4f58-bf79-5470055d7128",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-1",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": 4.523675918579102,
+        "y": 133.71595764160156,
+        "z": 10.640562057495117
+      },
+      "createdAt": "2026-04-21T18:55:09.6690000Z",
+      "modifiedAt": "2026-04-21T18:59:03.934Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": 4.523675918579102,
+          "y": 133.71595764160156,
+          "z": 10.640562057495117
+        },
+        "entryNormal": {
+          "x": -0.09797166287899017,
+          "y": -0.10987706482410431,
+          "z": 0.9874324202537537
+        },
+        "direction": {
+          "x": -0.07826386392116547,
+          "y": 0.4771803021430969,
+          "z": 0.8753134608268738
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": 6.532491683959961,
+          "y": 121.46807098388672,
+          "z": -11.826286315917969
+        },
+        "exitNormal": {
+          "x": 0.42413362860679626,
+          "y": -0.019114160910248756,
+          "z": -0.9053978323936462
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": 6.532491683959961,
+          "y": 121.46807098388672,
+          "z": -11.826286315917969
+        },
+        "midPoint": {
+          "x": 5.528083801269531,
+          "y": 127.59201049804688,
+          "z": -0.5928621292114258
+        },
+        "triangleIndex": 1358,
+        "barycentric": {
+          "x": 0.2430511713027954,
+          "y": 0.5372111201286316,
+          "z": 0.219737708568573
+        },
+        "triangleVertexIndex0": 739,
+        "triangleVertexIndex1": 660,
+        "triangleVertexIndex2": 735,
+        "entryTangent": {
+          "x": -0.9937514662742615,
+          "y": 0.011142756789922714,
+          "z": -0.09734416007995605
+        },
+        "normalRotation": {
+          "x": 0.004440496675670147,
+          "y": -0.07379688322544098,
+          "z": 0.7031359672546387,
+          "w": 0.7072016596794128
+        },
+        "baseRotation": {
+          "x": 0.5092509984970093,
+          "y": 0,
+          "z": 0.04553334414958954,
+          "w": 0.859412670135498
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "b6acaa9b-4518-4e91-9f18-0a3dc42bbf88",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-4",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -11.840986251831055,
+        "y": 147.32223510742188,
+        "z": 9.329609870910645
+      },
+      "createdAt": "2026-04-21T18:56:43.4750000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -11.840986251831055,
+          "y": 147.32223510742188,
+          "z": 9.329609870910645
+        },
+        "entryNormal": {
+          "x": -0.21266481280326843,
+          "y": 0.449501633644104,
+          "z": 0.8650995492935181
+        },
+        "direction": {
+          "x": -0.3971138298511505,
+          "y": 0.6993018984794617,
+          "z": 0.5943714380264282
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": 3.0355632305145264,
+          "y": 121.12520599365234,
+          "z": -12.936541557312012
+        },
+        "exitNormal": {
+          "x": 0.06957171857357025,
+          "y": -0.04501586779952049,
+          "z": -0.9965607523918152
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": 3.0355632305145264,
+          "y": 121.12520599365234,
+          "z": -12.936541557312012
+        },
+        "midPoint": {
+          "x": -4.402711391448975,
+          "y": 134.22372436523438,
+          "z": -1.8034658432006836
+        },
+        "triangleIndex": 24158,
+        "barycentric": {
+          "x": 0.2840588092803955,
+          "y": 0.11308339238166809,
+          "z": 0.6028578281402588
+        },
+        "triangleVertexIndex0": 12760,
+        "triangleVertexIndex1": 12761,
+        "triangleVertexIndex2": 12758,
+        "entryTangent": {
+          "x": 0.6710573434829712,
+          "y": 0.7114583849906921,
+          "z": -0.20276768505573273
+        },
+        "normalRotation": {
+          "x": -0.18060949444770813,
+          "y": -0.1840979903936386,
+          "z": -0.3340702950954437,
+          "w": 0.9065788388252258
+        },
+        "baseRotation": {
+          "x": 0.32240936160087585,
+          "y": 0,
+          "z": 0.21540942788124084,
+          "w": 0.921765148639679
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "ddc5aadb-c0b3-49da-b544-2232f0eb331e",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-5",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -5.519601821899414,
+        "y": 155.6687469482422,
+        "z": -3.9018988609313965
+      },
+      "createdAt": "2026-04-21T18:57:24.8390000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -5.519601821899414,
+          "y": 155.6687469482422,
+          "z": -3.9018988609313965
+        },
+        "entryNormal": {
+          "x": -0.9776736497879028,
+          "y": -0.1499238759279251,
+          "z": -0.13726799190044403
+        },
+        "direction": {
+          "x": -0.9045071005821228,
+          "y": 0.4230116307735443,
+          "z": 0.054111555218696594
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": 4.8405914306640625,
+          "y": 150.82359313964844,
+          "z": -4.52169132232666
+        },
+        "exitNormal": {
+          "x": 0.7145721912384033,
+          "y": -0.009220530278980732,
+          "z": -0.6995010375976562
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": 4.8405914306640625,
+          "y": 150.82359313964844,
+          "z": -4.52169132232666
+        },
+        "midPoint": {
+          "x": -0.3395051956176758,
+          "y": 153.2461700439453,
+          "z": -4.211794853210449
+        },
+        "triangleIndex": 55679,
+        "barycentric": {
+          "x": 0.8163248300552368,
+          "y": 0.1349809169769287,
+          "z": 0.048694271594285965
+        },
+        "triangleVertexIndex0": 29318,
+        "triangleVertexIndex1": 29339,
+        "triangleVertexIndex2": 29341,
+        "entryTangent": {
+          "x": 0.1516188383102417,
+          "y": -0.08861677348613739,
+          "z": -0.9830105900764465
+        },
+        "normalRotation": {
+          "x": 0.5221614241600037,
+          "y": 0.544131338596344,
+          "z": -0.5212677121162415,
+          "w": -0.39943528175354004
+        },
+        "baseRotation": {
+          "x": 0.03207530826330185,
+          "y": 0,
+          "z": 0.53615802526474,
+          "w": 0.8435080647468567
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "ebe8988d-4b21-4ea7-ba02-d8e21d976125",
+      "type": "trajectory",
+      "subType": "stab",
+      "subTypeDisplayName": "stab",
+      "displayName": "stab-6",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -15.311232566833496,
+        "y": 145.25802612304688,
+        "z": -5.179513454437256
+      },
+      "createdAt": "2026-04-21T18:58:10.0460000Z",
+      "modifiedAt": "2026-04-21T18:59:01.713Z",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -15.311232566833496,
+          "y": 145.25802612304688,
+          "z": -5.179513454437256
+        },
+        "entryNormal": {
+          "x": -0.13972511887550354,
+          "y": 0.42308345437049866,
+          "z": -0.8952525854110718
+        },
+        "direction": {
+          "x": -0.2955332398414612,
+          "y": 0.403306782245636,
+          "z": -0.8660275340080261
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": false,
+        "exitPoint": {
+          "x": -9.454865455627441,
+          "y": 137.2659912109375,
+          "z": 11.981927871704102
+        },
+        "exitNormal": {
+          "x": 0.06887897104024887,
+          "y": 0.015794018283486366,
+          "z": 0.997499942779541
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": -9.454865455627441,
+          "y": 137.2659912109375,
+          "z": 11.981927871704102
+        },
+        "midPoint": {
+          "x": -12.383049011230469,
+          "y": 141.2620086669922,
+          "z": 3.401207208633423
+        },
+        "triangleIndex": 24078,
+        "barycentric": {
+          "x": 0.9463199973106384,
+          "y": 0.019437428563833237,
+          "z": 0.034242548048496246
+        },
+        "triangleVertexIndex0": 5169,
+        "triangleVertexIndex1": 5173,
+        "triangleVertexIndex2": 5171,
+        "entryTangent": {
+          "x": 0.9757782816886902,
+          "y": -0.018389958888292313,
+          "z": -0.21390795707702637
+        },
+        "normalRotation": {
+          "x": 0.7132315635681152,
+          "y": 0.6792387366294861,
+          "z": 0.022551221773028374,
+          "w": -0.17154282331466675
+        },
+        "baseRotation": {
+          "x": -0.5169404149055481,
+          "y": 0,
+          "z": 0.17640672624111176,
+          "w": 0.837647557258606
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    }
+  ],
+  "customData": {}
+}

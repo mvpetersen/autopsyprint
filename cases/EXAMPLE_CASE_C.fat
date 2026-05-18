@@ -1,0 +1,309 @@
+{
+  "fatal_version": "1.0.0",
+  "format_version": 1,
+  "created_at": "2026-04-23T12:15:19.659Z",
+  "generator": "FATAL WebGL v1.0.0",
+  "case": {
+    "uid": "22543732-8ad1-46b3-8084-0a9f9441ce6f",
+    "case_number": "CASE-2026-640",
+    "sex": "male",
+    "age": null,
+    "height": null,
+    "weight": null,
+    "description": "",
+    "notes": "",
+    "createdAt": "2026-04-23T12:11:46.521Z",
+    "updatedAt": "2026-04-23T12:11:46.521Z"
+  },
+  "screenshots": [],
+  "videos": [],
+  "exports": [],
+  "annotations": [
+    {
+      "uid": "08597a4e-5dc0-4b44-b85a-160260631bf3",
+      "type": "trajectory",
+      "subType": "gsw",
+      "subTypeDisplayName": "gsw",
+      "displayName": "gsw-2",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": 22.916057586669922,
+        "y": 144.53204345703125,
+        "z": 0.6488535404205322
+      },
+      "createdAt": "2026-04-23T12:13:43.2710000Z",
+      "modifiedAt": "0001-01-01T00:00:00.0000000",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": 22.916057586669922,
+          "y": 144.53204345703125,
+          "z": 0.6488535404205322
+        },
+        "entryNormal": {
+          "x": 0.8833116888999939,
+          "y": 0.43465855717658997,
+          "z": -0.1533210575580597
+        },
+        "direction": {
+          "x": 0.7827426195144653,
+          "y": 0.37304338812828064,
+          "z": 0.4981490671634674
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": true,
+        "exitPoint": {
+          "x": 8.468082427978516,
+          "y": 139.23297119140625,
+          "z": -10.224681854248047
+        },
+        "exitNormal": {
+          "x": 0.20076006650924683,
+          "y": 0.2692796587944031,
+          "z": -0.9419044256210327
+        },
+        "hasExitPoint": true,
+        "isDeflected": true,
+        "exitPointNonDeflected": {
+          "x": 3.2265465259552,
+          "y": 135.14833068847656,
+          "z": -11.881837844848633
+        },
+        "midPoint": {
+          "x": 13.07130241394043,
+          "y": 139.84017944335938,
+          "z": -5.61649227142334
+        },
+        "triangleIndex": 15243,
+        "barycentric": {
+          "x": 0.40384209156036377,
+          "y": 0.46296918392181396,
+          "z": 0.13318875432014465
+        },
+        "triangleVertexIndex0": 8108,
+        "triangleVertexIndex1": 8112,
+        "triangleVertexIndex2": 8107,
+        "entryTangent": {
+          "x": 0.4575396478176117,
+          "y": -0.8756747841835022,
+          "z": 0.15283596515655518
+        },
+        "normalRotation": {
+          "x": 0.7242087721824646,
+          "y": 0.22905132174491882,
+          "z": 0.6430305242538452,
+          "w": -0.09782075881958008
+        },
+        "baseRotation": {
+          "x": 0.30060914158821106,
+          "y": 0,
+          "z": -0.4723477363586426,
+          "w": 0.8285660743713379
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "8ccd6422-ce97-47aa-a344-01a0f57a818b",
+      "type": "trajectory",
+      "subType": "gsw",
+      "subTypeDisplayName": "gsw",
+      "displayName": "gsw-1",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -7.916600227355957,
+        "y": 112.65206146240234,
+        "z": -10.269888877868652
+      },
+      "createdAt": "2026-04-23T12:12:38.1840000Z",
+      "modifiedAt": "0001-01-01T00:00:00.0000000",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -7.916600227355957,
+          "y": 112.65206146240234,
+          "z": -10.269888877868652
+        },
+        "entryNormal": {
+          "x": -0.4946860074996948,
+          "y": -0.0680503398180008,
+          "z": -0.8659751415252686
+        },
+        "direction": {
+          "x": -0.5209887623786926,
+          "y": -0.04433875158429146,
+          "z": -0.852411150932312
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": true,
+        "exitPoint": {
+          "x": -0.45586368441581726,
+          "y": 112.29881286621094,
+          "z": 7.296070098876953
+        },
+        "exitNormal": {
+          "x": 0.2640168368816376,
+          "y": 0.07745343446731567,
+          "z": 0.9614031910896301
+        },
+        "hasExitPoint": true,
+        "isDeflected": true,
+        "exitPointNonDeflected": {
+          "x": 3.0236315727233887,
+          "y": 113.58312225341797,
+          "z": 7.6298604011535645
+        },
+        "midPoint": {
+          "x": -2.446484327316284,
+          "y": 113.11759185791016,
+          "z": -1.320014238357544
+        },
+        "triangleIndex": 7526,
+        "barycentric": {
+          "x": 0.15626704692840576,
+          "y": 0.04969035089015961,
+          "z": 0.7940425872802734
+        },
+        "triangleVertexIndex0": 4087,
+        "triangleVertexIndex1": 4081,
+        "triangleVertexIndex2": 4086,
+        "entryTangent": {
+          "x": 0.8688647150993347,
+          "y": -0.030294083058834076,
+          "z": -0.4937296211719513
+        },
+        "normalRotation": {
+          "x": 0.6872483491897583,
+          "y": 0.678850531578064,
+          "z": -0.20699362456798553,
+          "w": -0.15493661165237427
+        },
+        "baseRotation": {
+          "x": -0.6165696382522583,
+          "y": 0,
+          "z": 0.37684381008148193,
+          "w": 0.6912529468536377
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    },
+    {
+      "uid": "c33a8ca2-8ee4-4330-afe6-0422d1bfbf1a",
+      "type": "trajectory",
+      "subType": "gsw",
+      "subTypeDisplayName": "gsw",
+      "displayName": "gsw-3",
+      "group": "",
+      "notes": "",
+      "position": {
+        "x": -10.030969619750977,
+        "y": 70.01889038085938,
+        "z": -7.396768093109131
+      },
+      "createdAt": "2026-04-23T12:14:39.7750000Z",
+      "modifiedAt": "0001-01-01T00:00:00.0000000",
+      "visible": true,
+      "renderMode": "unlit",
+      "areaData": {
+        "uid": "",
+        "subMeshes": []
+      },
+      "trajectoryData": {
+        "entryPoint": {
+          "x": -10.030969619750977,
+          "y": 70.01889038085938,
+          "z": -7.396768093109131
+        },
+        "entryNormal": {
+          "x": -0.09063628315925598,
+          "y": -0.21943950653076172,
+          "z": -0.966955840587616
+        },
+        "direction": {
+          "x": -0.6099845767021179,
+          "y": -0.16667026281356812,
+          "z": -0.7746869325637817
+        },
+        "penetrationDepth": 0,
+        "penetrationAngle": 0,
+        "isPerforating": true,
+        "exitPoint": {
+          "x": -2.4191794395446777,
+          "y": 72.09870147705078,
+          "z": 2.2702889442443848
+        },
+        "exitNormal": {
+          "x": 0.9811132550239563,
+          "y": -0.1874573528766632,
+          "z": 0.047711752355098724
+        },
+        "hasExitPoint": true,
+        "isDeflected": false,
+        "exitPointNonDeflected": {
+          "x": -2.4191794395446777,
+          "y": 72.09870147705078,
+          "z": 2.2702889442443848
+        },
+        "midPoint": {
+          "x": -6.225074768066406,
+          "y": 71.05879211425781,
+          "z": -2.563239574432373
+        },
+        "triangleIndex": 30686,
+        "barycentric": {
+          "x": 0.720367431640625,
+          "y": 0.013025781139731407,
+          "z": 0.26660677790641785
+        },
+        "triangleVertexIndex0": 16089,
+        "triangleVertexIndex1": 16205,
+        "triangleVertexIndex2": 16206,
+        "entryTangent": {
+          "x": -0.9855337738990784,
+          "y": 0.1264047920703888,
+          "z": 0.06373992562294006
+        },
+        "normalRotation": {
+          "x": -0.6586012244224548,
+          "y": 0.7428470253944397,
+          "z": -0.052641961723566055,
+          "w": -0.10794277489185333
+        },
+        "baseRotation": {
+          "x": -0.6000712513923645,
+          "y": 0,
+          "z": 0.472493052482605,
+          "w": 0.6454958319664001
+        },
+        "hasPoseTrackingData": true
+      },
+      "pointData": {
+        "uid": "",
+        "markers": []
+      }
+    }
+  ],
+  "customData": {}
+}
