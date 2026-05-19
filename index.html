@@ -895,7 +895,7 @@
       <div class="demo-note" style="margin-top: 2rem;">
         AutopsyPrint currently supports generic adult male and female body models. This
         version of the web app focuses on ballistic and sharp force trajectory documentation
-        and 3D print export. Body posing may produce minor mesh artefacts on the trunk area.
+        and 3D print export. Posing the body may produce minor mesh artefacts in some areas.
       </div>
     </div>
   </section>
@@ -912,29 +912,16 @@
 
       <div class="cases-grid">
 
-        <!-- CASE 1
-             TODO: Replace case-thumb-placeholder with:
-             <img class="case-thumb" src="./cases/case1-thumb.png" alt="Case 1: Single GSW thorax" />
-             Update href attributes with real file paths / deep-link URLs -->
+        <!-- CASE 1 -->
         <div class="case-card">
           <div class="case-thumb-placeholder">
-            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <line x1="18" y1="44" x2="70" y2="52" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
-              <polygon points="70,48 80,52 70,56" fill="#EE5B3E"/>
-            </svg>
-            <div class="case-thumb-label">GSW · Thorax</div>
+            <img class="case-thumb" src="./images/caseA-thumb.png" alt="Case A: GSW" />
+            <div class="case-thumb-label">GSW · Straight</div>
           </div>
           <div class="case-body">
-            <div class="case-title">Single Gunshot — Thorax</div>
+            <div class="case-title">Multiple Gunshots</div>
             <p class="case-desc">
-              Single entry GSW to the left thorax demonstrating the basic trajectory
-              annotation and export workflow.
+              TODO: Add case description.
             </p>
             <div class="case-actions">
               <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
@@ -946,25 +933,13 @@
         <!-- CASE 2 -->
         <div class="case-card">
           <div class="case-thumb-placeholder">
-            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <line x1="135" y1="30" x2="90" y2="44" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
-              <polygon points="90,40 82,44 90,48" fill="#EE5B3E"/>
-              <line x1="138" y1="52" x2="92" y2="57" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3"/>
-              <polygon points="92,53 84,57 92,61" fill="#EE5B3E"/>
-            </svg>
+            <img class="case-thumb" src="./images/caseB-thumb.png" alt="Case B: Multiple stab wounds" />
             <div class="case-thumb-label">SFW · Multiple</div>
           </div>
           <div class="case-body">
             <div class="case-title">Multiple Stab Wounds</div>
             <p class="case-desc">
-              Two sharp force injuries to the right thorax with differing angles, illustrating
-              documentation of multiple related trajectories.
+              TODO: Add case description.
             </p>
             <div class="case-actions">
               <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
@@ -976,23 +951,13 @@
         <!-- CASE 3 -->
         <div class="case-card">
           <div class="case-thumb-placeholder">
-            <svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="80" cy="22" rx="11" ry="13" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="66" y="33" width="28" height="36" rx="3" stroke="#EE5B3E" stroke-width="1.2"/>
-              <rect x="52" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="95" y="35" width="13" height="28" rx="3" stroke="#555" stroke-width="1"/>
-              <rect x="68" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <rect x="81" y="69" width="11" height="24" rx="2" stroke="#555" stroke-width="1"/>
-              <path d="M 18 32 Q 55 40 75 58" stroke="#EE5B3E" stroke-width="1.8" stroke-dasharray="5 3" fill="none"/>
-              <polygon points="73,58 80,65 68,65" fill="#EE5B3E"/>
-            </svg>
+            <img class="case-thumb" src="./images/caseC-thumb.png" alt="Case C: Deflected gunshot trajectory" />
             <div class="case-thumb-label">GSW · Deflected</div>
           </div>
           <div class="case-body">
-            <div class="case-title">Deflected Gunshot Trajectory</div>
+            <div class="case-title">Deflected Gunshot Trajectories</div>
             <p class="case-desc">
-              A gunshot wound with deflection, demonstrating documentation of
-              non-linear trajectories and segmented angle measurements.
+              TODO: Add case description.
             </p>
             <div class="case-actions">
               <span class="btn btn-secondary btn-sm" style="opacity:0.35; cursor:not-allowed;">↓ .3mf</span>
