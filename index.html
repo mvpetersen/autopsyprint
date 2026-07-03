@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>AutopsyPrint - 3D Printable Injury Trajectory Models</title>
+  <title>AutopsyPrint - For 3D Printing of forensic trajectories</title>
   <meta name="description" content="A novel tool for translating ballistic and sharp force injury trajectory findings into 3D printable models." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -717,12 +717,11 @@
     <div class="hero-tag">Research Paper · 2026</div>
 
     <h1>Autopsy<span class="accent">Print</span></h1>
-    <p class="hero-subtitle">3D Printable Forensic Injury Documentation</p>
+    <p class="hero-subtitle">For 3D Printing of forensic trajectories</p>
 
     <p class="hero-desc">
-      A novel browser-based tool for translating ballistic and sharp force wound
-      trajectories into 3D printable models. This tool aims to bridge the gap between
-      complex spatial autopsy data and accessible forensic communication.
+      A browser-based tool to transform ballistic and sharp force wound trajectories into 3D printable models. 
+      This tool aims to make complex spatial information from autopsies clear and accessible to a wide range of audiences. 
     </p>
 
     <div class="author-block">
@@ -752,8 +751,8 @@
       </a>
     </div>
     <p style="margin-top: 1.25rem; font-size: 0.88rem; color: var(--muted); max-width: 540px; line-height: 1.65;">
-      The web app is available for research evaluation. It runs directly in your browser
-      using WebGL. No installation or account is required and all data is stored in the browser (IndexedDB).
+      The web tool is developed for research evaluation purposes. It runs directly in your browser using WebGL. 
+      No installation or account is required, and all data entered is stored in the browser (IndexedDB).
     </p>
   </div>
 </header>
@@ -766,9 +765,9 @@
       <p class="section-tag">The Tool</p>
       <h2>Interactive 3D trajectory annotation</h2>
       <p>
-        AutopsyPrint runs entirely in the browser. Forensic pathologists annotate entry points
-        and wound trajectories on an interactive 3D body model using azimuth and elevation angles,
-        then export the result directly to a 3D-printable file.
+        AutopsyPrint runs entirely in the browser. Entry points and wound trajectories can be 
+        annotated on the body model using azimuth and elevation angles. Then, the body model 
+        can be exported as a 3D-printable file.
       </p>
 
       <div class="screenshot-wrap">
@@ -788,9 +787,9 @@
       </div>
 
       <div class="demo-note" style="margin-top: 1.5rem;">
-        The web app processes all data locally in your browser using WebGL. No case data is
-        transmitted to or stored on any server. Saved cases persist in the browser's IndexedDB
-        storage and can be deleted by the user at any time.
+        The web app processes all data locally using WebGL. No case data is 
+        transmitted to or stored on any server. Saved cases persist in the 
+        browser's IndexedDB storage and can be deleted by the user at any time.
       </div>
     </div>
   </section>
@@ -801,32 +800,18 @@
       <p class="section-tag">Background</p>
       <h2>From 2D paper forms to 3D spatial documentation</h2>
       <p>
-        Forensic autopsy findings are typically recorded using paper-based formats, a process
-        that results in loss of three-dimensional information. While surface wounds can be outlined on
-        2D body models, recording wound trajectories poses fundamental geometric
-        challenges and a single trajectory requires multiple angular view points for understanding the spatial orientation.
+        Forensic autopsy findings are typically recorded using paper-based formats, a process that results in loss of three-dimensional information. Recording wound trajectories poses fundamental geometric challenges for 2D recording. A single trajectory requires the user to draw multiple viewpoint angles to describe a spatial direction fully. 
       </p>
       <p>
-        3D printing technologies can transform autopsy findings into physical models, providing more
-        accessible 3D visualisation than paper-based approaches. The declining costs of FDM printers,
-        combined with user-friendly software, creates an immediate opportunity for implementation
-        in forensic practice.
+        3D printing technologies can convert autopsy findings into physical models, providing more accessible, intuitive visualisations than paper-based formats. As 3D printers become cheaper, we offer a user-friendly software tool to support user learning and experience with models.  
       </p>
 
       <div class="abstract-box">
         <p>
-          When autopsy findings are presented on two-dimensional models, there is an inherent
-          reduction of spatial information, which the viewer must infer from simplified anatomical
-          and geometrical representations. Multiple diagrams representing trajectory angles must be
-          integrated into a complete mental model, introducing further potential for errors in
-          viewer understanding.
+          When autopsy findings are presented on two-dimensional models, there is an inherent reduction of spatial information, which the viewer must infer from simplified anatomical and geometrical representations. Multiple diagrams representing trajectory angles must be integrated into a complete mental model, introducing further potential for errors in viewer understanding.
         </p>
         <p style="margin-top: 0.9rem;">
-          Forensic specialists have the extensive training and anatomical knowledge required to
-          mentally reconstruct 3D models from 2D. However, for jurors and other non-specialist
-          stakeholders, such mental reconstruction is likely demanding, if not impossible. The
-          possibility of physically holding, manipulating and otherwise interacting with complex autopsy data
-          are key advantages of 3D printing.
+          Forensic specialists have the extensive training and anatomical knowledge required to mentally reconstruct 3D models from 2D formats. However, for jurors and other non-specialist stakeholders, such mental reconstruction is likely demanding, if not impossible. The possibilities of physically holding, manipulating, and otherwise interacting with complex autopsy data are key advantages of 3D printing.
         </p>
       </div>
     </div>
@@ -836,36 +821,31 @@
   <section>
     <div class="container">
       <p class="section-tag">Contributions</p>
-      <h2>What AutopsyPrint offers</h2>
+      <h2>What the AutopsyPrint tool can support: </h2>
 
       <div class="points-grid">
         <div class="point-card">
           <div class="point-num">01</div>
           <div class="point-title">Trajectory Mapping</div>
-          <p class="point-desc">Place entry and exit points on an interactive 3D body model. Trajectories are defined using a spherical coordinate system (azimuth and elevation angles), supporting gunshot wounds, stab wounds, and other ballistic injury types.</p>
+          <p class="point-desc">Place entry and exit points on an interactive 3D body model. Trajectories are defined using a spherical coordinate system (azimuth and elevation angles), supporting annotation of gunshot wounds, stab wounds, and other ballistic injury types.</p>
         </div>
         <div class="point-card">
           <div class="point-num">02</div>
           <div class="point-title">Dynamic Pose Manipulation</div>
-          <p class="point-desc">Reposition limbs using inverse kinematics to optimally visualise trajectories. For example, raising the arms to clear a thorax gunshot path. Trajectories automatically reposition when the pose changes.</p>
+          <p class="point-desc">Reposition limbs using inverse kinematics to visualise trajectories. For example, raising the arms can allow the user to plot a thorax gunshot path. Trajectories automatically reposition when the pose changes.</p>
         </div>
         <div class="point-card">
           <div class="point-num">03</div>
           <div class="point-title">3D Print Export</div>
-          <p class="point-desc">Export to .3mf or .stl with configurable model size (small, medium, large), additive or subtractive trajectory rendering, and single- or multi-colour printing support for standard FDM printers.</p>
+          <p class="point-desc">Export to .3mf or .stl with configurable model size (small, medium, large), additive or subtractive trajectory rendering, and single- or multi-colour printing support for standard 3D (FDM) printers.</p>
         </div>
         <div class="point-card">
           <div class="point-num">04</div>
           <div class="point-title">Courtroom Communication</div>
-          <p class="point-desc">Physical 3D models allow jurors, investigators, and other non-specialist stakeholders to directly inspect and manipulate spatial forensic findings, without requiring mental reconstruction from 2D diagrams.</p>
+          <p class="point-desc">Physical 3D models allow jurors, investigators, and other stakeholders to directly inspect and manipulate spatial forensic findings, without requiring mental reconstruction from 2D diagrams.</p>
         </div>
       </div>
 
-      <div class="demo-note" style="margin-top: 2rem;">
-        AutopsyPrint currently supports generic adult male and female body models. This
-        version of the web app focuses on ballistic and sharp force trajectory documentation
-        and 3D print export. Posing the body may produce minor mesh artefacts in some areas.
-      </div>
     </div>
   </section>
 
@@ -875,8 +855,7 @@
       <p class="section-tag">Example Cases</p>
       <h2>Download and explore</h2>
       <p>
-        The following example cases illustrate typical documentation scenarios. Each can be
-        downloaded as a .3mf file for 3D printing, or opened directly in the web app.
+        The following example cases illustrate typical forensic autopsy documentation scenarios. Each can be downloaded as a .3mf file for 3D printing or opened directly in the web app.
       </p>
 
       <div class="cases-grid">
